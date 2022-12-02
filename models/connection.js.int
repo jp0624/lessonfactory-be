@@ -1,0 +1,24 @@
+var mysql = require('mysql');
+
+var pool = mysql.createPool({
+		connectionLimit : 100, //important
+	host: '192.168.4.40',
+	  user: 'dams',
+	  password: 'sonic_root',
+	  database: 'dams_schema'
+});
+  
+
+	pool.getConnection(function(err,connection){
+			if (err) {
+				console.log(err);
+				//res.json({"code" : 100, "status" : "Error in connection database"});
+				return;
+			}   
+
+			console.log('connected as id ' + connection.threadId);
+
+
+		})
+
+module.exports = pool;
